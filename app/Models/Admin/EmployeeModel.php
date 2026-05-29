@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Admin;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class EmployeeModel extends Model
 {
     protected $table = 'users';
     protected $primaryKey = 'id';

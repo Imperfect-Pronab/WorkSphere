@@ -396,3 +396,21 @@ body {
 .d6 {
   animation-delay: 0.36s;
 }
+
+.toast-progress-success {
+  animation: progressBar 4s linear forwards;
+}
+
+.toast-progress-error {
+  animation: progressBar 4s linear forwards;
+}
+
+@keyframes progressBar {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0%;
+  }
+}

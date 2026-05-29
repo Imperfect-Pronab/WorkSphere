@@ -7,140 +7,50 @@
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .serif {
-            font-family: 'Instrument Serif', serif;
-        }
-
-        .grain::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0.5;
-        }
-
-        .input-field {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #f0ece4;
-            transition: all 0.25s ease;
-        }
-
-        .input-field::placeholder {
-            color: rgba(240, 236, 228, 0.3);
-        }
-
-        .input-field:focus {
-            outline: none;
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(212, 180, 140, 0.55);
-            box-shadow: 0 0 0 3px rgba(212, 180, 140, 0.12);
-        }
-
-        .btn-login {
-            background: linear-gradient(135deg, #c9a96e 0%, #e0c99a 50%, #c9a96e 100%);
-            background-size: 200% 200%;
-            animation: shimmer 4s ease infinite;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .btn-login:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 32px rgba(201, 169, 110, 0.35);
-        }
-
-        .btn-login:active {
-            transform: translateY(0px);
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        .card-glow {
-            box-shadow:
-                0 0 0 1px rgba(255, 255, 255, 0.07),
-                0 24px 80px rgba(0, 0, 0, 0.55),
-                0 4px 16px rgba(0, 0, 0, 0.3);
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fadeup {
-            animation: fadeUp 0.6s ease forwards;
-        }
-
-        .delay-1 {
-            animation-delay: 0.1s;
-            opacity: 0;
-        }
-
-        .delay-2 {
-            animation-delay: 0.2s;
-            opacity: 0;
-        }
-
-        .delay-3 {
-            animation-delay: 0.3s;
-            opacity: 0;
-        }
-
-        .delay-4 {
-            animation-delay: 0.4s;
-            opacity: 0;
-        }
-
-        .delay-5 {
-            animation-delay: 0.5s;
-            opacity: 0;
-        }
-
-        .dot-pattern {
-            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-            background-size: 28px 28px;
-        }
-
-        .divider-line {
-            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.12), transparent);
-        }
-
-        label {
-            color: rgba(240, 236, 228, 0.55);
-            letter-spacing: 0.08em;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/login.css') ?>">
 </head>
 
 <body class="grain min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
     style="background: #0f0d0a;">
+    <?php if (session()->getFlashdata('success')) : ?>
+        <div id="toast-success"
+            class="fixed top-1/2 left-1/2 z-[9999] -translate-x-1/2 -translate-y-1/2 
+        opacity-0 scale-95 transition-all duration-300 ease-out">
 
+            <div class="min-w-[340px] max-w-[500px] rounded-2xl border border-emerald-400/20 
+            bg-emerald-500/10 backdrop-blur-xl shadow-2xl overflow-hidden">
+
+                <div class="flex items-start gap-4 p-5">
+
+                    <div class="flex h-12 w-12 items-center justify-center rounded-full 
+                    bg-emerald-500 text-white shadow-lg">
+                        ✓
+                    </div>
+
+                    <div class="flex-1">
+                        <h3 class="text-lg font-semibold text-white">
+                            Success
+                        </h3>
+
+                        <p class="mt-1 text-sm text-emerald-100">
+                            <?= session()->getFlashdata('success') ?>
+                        </p>
+                    </div>
+
+                    <button onclick="closeToast('toast-success')"
+                        class="text-white/60 hover:text-white transition">
+                        ✕
+                    </button>
+
+                </div>
+
+                <div class="h-1 w-full bg-white/10">
+                    <div class="toast-progress-success h-full bg-emerald-400"></div>
+                </div>
+
+            </div>
+        </div>
+    <?php endif; ?>
     <!-- Background layers -->
     <div class="dot-pattern fixed inset-0 z-0 pointer-events-none"></div>
     <div class="fixed inset-0 z-0 pointer-events-none"
@@ -253,6 +163,37 @@
         </p>
 
     </div>
+    <script>
+        function showToast(id) {
+            const toast = document.getElementById(id);
+
+            if (!toast) return;
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'scale-95');
+                toast.classList.add('opacity-100', 'scale-100');
+            }, 100);
+
+            setTimeout(() => {
+                closeToast(id);
+            }, 4000);
+        }
+
+        function closeToast(id) {
+            const toast = document.getElementById(id);
+
+            if (!toast) return;
+
+            toast.classList.remove('opacity-100', 'scale-100');
+            toast.classList.add('opacity-0', 'scale-95');
+
+            setTimeout(() => {
+                toast.remove();
+            }, 300);
+        }
+
+        showToast('toast-success');
+    </script>
 </body>
 
 </html>

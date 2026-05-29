@@ -26,6 +26,10 @@
         transition: color 0.2s;
     }
 
+    .active {
+        color: #63d7a5;
+    }
+
     .nav-link:hover {
         color: rgba(255, 255, 255, 0.82);
     }
@@ -114,9 +118,9 @@
         </a>
         <div class="v-sep"></div>
         <div style="display:flex;align-items:center;gap:24px;">
-            <a href="<?= base_url('dashboard') ?>" class="nav-link">Dashboard</a>
-            <a href="<?= base_url('reports') ?>" class="nav-link">Reports</a>
-            <a href="<?= base_url('settings') ?>" class="nav-link">Settings</a>
+            <a href="<?= base_url('admin/profile') ?>" class="nav-link <?= isActive('admin/profile') ?>">Profile</a>
+            <a href="<?= base_url('admin/getHashedPassword') ?>" class="nav-link <?= isActive('admin/getHashedPassword') ?>">Hash Password</a>
+            <a href="<?= base_url('admin/changePassword') ?>" class="nav-link <?= isActive('admin/changePassword') ?>">Change Password</a>
         </div>
     </div>
 

@@ -28,6 +28,7 @@ class LoginController extends BaseController
                     'isLoggedIn' => true
                 ];
                 session()->set($sessionData);
+                $session->setFlashdata('success', "You have logged in successfully.");
                 if ($user['role'] == 'super_admin') {
                     return redirect()->to('/admin/dashboard');
                 } elseif ($user['role'] == 'hr') {
@@ -45,8 +46,13 @@ class LoginController extends BaseController
 
     public function logout()
     {
-        session()->destroy();
-        return redirect()->to('/login');
+        session()->remove([
+            'user_id',
+            'user_name',
+            'user_role',
+            'isLoggedIn'
+        ]);
+        return redirect()->to('/login')->with('success', 'You have logged out successfully.');
     }
 
     public function getHashedPassword()
