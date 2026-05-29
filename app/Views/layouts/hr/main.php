@@ -13,9 +13,9 @@
 
 <body>
 
-    <?= $this->include('layouts/navbar') ?>
+    <?= $this->include('layouts/hr/navbar') ?>
 
-    <?= $this->include('layouts/sidebar') ?>
+    <?= $this->include('layouts/hr/sidebar') ?>
 
     <div class="main-content">
         <?= $this->renderSection('content') ?>

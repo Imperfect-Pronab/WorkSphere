@@ -32,7 +32,7 @@ class LoginController extends BaseController
                 if ($user['role'] == 'super_admin') {
                     return redirect()->to('/admin/dashboard');
                 } elseif ($user['role'] == 'hr') {
-                    return redirect()->to('/hr');
+                    return redirect()->to('/hr/dashboard');
                 } else {
                     return redirect()->to('/employee');
                 }

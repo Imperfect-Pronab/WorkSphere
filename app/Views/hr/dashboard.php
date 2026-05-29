@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/admin/main') ?>
+<?= $this->extend('layouts/hr/main') ?>
 
 <?= $this->section('content') ?>
 
@@ -7,7 +7,7 @@
     <!-- Page header -->
     <div class="anim d1">
         <p class="dash-header-label">Overview</p>
-        <h1 class="dash-title">Admin Dashboard</h1>
+        <h1 class="dash-title">HR Dashboard</h1>
         <p class="dash-subtitle">
             Welcome back, <span style="color:rgba(255,255,255,0.65);"><?= esc(session()->get('user_name')) ?></span>
             &mdash; here's what's happening today.

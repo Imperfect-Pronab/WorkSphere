@@ -6,7 +6,7 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use CodeIgniter\Filters\FilterInterface;
 
-class AdminFilter implements FilterInterface
+class HrFilter implements FilterInterface
 {
     public function before(RequestInterface $request, $arguments = null)
     {
@@ -14,9 +14,9 @@ class AdminFilter implements FilterInterface
             return redirect()->to('/login');
         }
 
-        if (!session()->get('user_role') == 'super_admin') {
+        if (session()->get('user_role') != 'hr') {
             return redirect()->to('/login')
-                ->with('error', 'Access Denied');
+                ->with('error', 'Access denied.');
         }
     }
 

@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/admin/main') ?>
+<?= $this->extend('layouts/hr/main') ?>
 
 <?= $this->section('content') ?>
 
@@ -229,30 +229,34 @@
 
     <!-- Header -->
     <div class="anim d1">
-        <p class="dash-header-label">Admin Panel</p>
-        <h1 class="dash-title">Hash Password</h1>
-        <p class="dash-subtitle">Generate a bcrypt hash from any plain-text password.</p>
+        <p class="dash-header-label">HR Panel</p>
+        <h1 class="dash-title">Change Password</h1>
+        <p class="dash-subtitle">Update your account password to maintain security and protect your access.</p>
     </div>
 
     <!-- Form card -->
     <div class="form-card anim d2">
 
-        <form action="<?= base_url('admin/getHashedPassword') ?>" method="post" id="hashForm">
+        <form action="<?= base_url('hr/changePassword') ?>" method="post" id="hashForm">
 
-            <label class="field-label" for="password">Plain-text Password</label>
+            <label class="field-label" for="oldpassword">Old Password</label>
 
             <div class="field-wrap">
-                <input
-                    class="hash-input"
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Enter password to hash…"
-                    required
-                    autocomplete="off"
-                    oninput="updateStrength(this.value)">
-                <button type="button" class="eye-btn" onclick="toggleVisibility()" id="eyeBtn" aria-label="Toggle visibility">
-                    <svg id="eyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <input class="hash-input" type="password" name="oldpassword" id="oldpassword" placeholder="Enter old password" required autocomplete="off">
+                <button type="button" class="eye-btn" onclick="toggleVisibility('oldpassword', 'oldEyeIcon')" aria-label="Toggle visibility">
+                    <svg id="oldEyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                </button>
+            </div>
+            <br>
+            <label class="field-label" for="newpassword">New Password</label>
+
+            <div class="field-wrap">
+                <input class="hash-input" type="password" name="newpassword" id="newpassword" placeholder="Enter new password" required autocomplete="off" oninput="updateStrength(this.value)">
+                <button type="button" class="eye-btn" onclick="toggleVisibility('newpassword', 'newEyeIcon')" aria-label="Toggle visibility">
+                    <svg id="newEyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
                         <circle cx="12" cy="12" r="3" />
                     </svg>
@@ -268,7 +272,19 @@
             </div>
             <div class="strength-label" id="strengthLabel"></div>
 
-            <p class="field-hint">The original password is never stored. Only the generated hash is returned.</p>
+            <label class="field-label" for="confirmpassword">Confirm Password</label>
+
+            <div class="field-wrap">
+                <input class="hash-input" type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm password" required autocomplete="off">
+                <button type="button" class="eye-btn" onclick="toggleVisibility('confirmpassword', 'confirmEyeIcon')" aria-label="Toggle visibility">
+                    <svg id="confirmEyeIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                        <circle cx="12" cy="12" r="3" />
+                    </svg>
+                </button>
+            </div>
+
+            <p class="field-hint">The original password is never stored. Only the generated hash is stored.</p>
 
             <div class="form-divider"></div>
 
@@ -277,30 +293,10 @@
                     <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
                     <path d="M7 11V7a5 5 0 0 1 10 0v4" />
                 </svg>
-                Generate Hash
+                Change Password
             </button>
 
         </form>
-
-        <!-- Result (shown when CI returns hash via flashdata or query) -->
-        <?php if (!empty($hashed_password)) : ?>
-            <div class="result-box visible" id="resultBox">
-                <div class="result-box-label">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;margin-right:5px;vertical-align:middle;">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Hashed Output
-                </div>
-                <div class="result-hash" id="hashValue"><?= esc($hashed_password) ?></div>
-                <button class="copy-btn" onclick="copyHash()">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                    </svg>
-                    <span id="copyLabel">Copy Hash</span>
-                </button>
-            </div>
-        <?php endif; ?>
 
         <!-- Info chips -->
         <div class="info-row anim d3">
@@ -328,9 +324,11 @@
 </div>
 
 <script>
-    function toggleVisibility() {
-        const input = document.getElementById('password');
-        const icon = document.getElementById('eyeIcon');
+    function toggleVisibility(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        console.log(input);
+        console.log(icon);
         const visible = input.type === 'text';
         input.type = visible ? 'password' : 'text';
         icon.innerHTML = visible ?
@@ -368,15 +366,6 @@
 
         label.textContent = val.length > 0 ? labels[score] || 'Very Weak' : '';
         label.style.color = val.length > 0 ? colors[score] : 'rgba(255,255,255,0.25)';
-    }
-
-    function copyHash() {
-        const text = document.getElementById('hashValue').textContent.trim();
-        const label = document.getElementById('copyLabel');
-        navigator.clipboard.writeText(text).then(() => {
-            label.textContent = 'Copied!';
-            setTimeout(() => label.textContent = 'Copy Hash', 2000);
-        });
     }
 </script>
 

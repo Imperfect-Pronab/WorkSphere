@@ -12,23 +12,39 @@ $routes->get('/', 'Home::index');
 $routes->get('/login', 'Auth\\LoginController::index');
 $routes->post('/login/process', 'Auth\\LoginController::process');
 
-// Admin and HR Dashboard
+// Admin
 
-$routes->get('/admin/dashboard', 'Admin\\DashboardController::index', ['filter' => 'admin']);
+$routes->group('admin', ['filter' => 'admin'], function ($routes) {
 
-// Admin Employees
+    // Dashboard
+    $routes->get('dashboard', 'Admin\DashboardController::index');
 
-$routes->get('/admin/employees', 'Admin\\EmployeeController::index', ['filter' => 'admin']);
+    // Employees
+    $routes->get('employees', 'Admin\EmployeeController::index');
 
-// Get Hashed Password
+    // Get Hashed Password
+    $routes->get('getHashedPassword', 'Auth\LoginController::getHashedPassword');
+    $routes->post('getHashedPassword', 'Auth\LoginController::getHashedPasswordByAdmin');
 
-$routes->get('/admin/getHashedPassword', 'Auth\\LoginController::getHashedPassword', ['filter' => 'admin']);
-$routes->post('/admin/getHashedPassword', 'Auth\\LoginController::getHashedPasswordByAdmin', ['filter' => 'admin']);
+    // Change Password
+    $routes->get('changePassword', 'Admin\ChangePasswordController::changePassword');
+    $routes->post('changePassword', 'Admin\ChangePasswordController::changePasswordByAdmin');
+});
 
-// Admin Change Password
+// HR
 
-$routes->get('/admin/changePassword', 'Admin\\ChangePasswordController::changePassword', ['filter' => 'admin']);
-$routes->post('/admin/changePassword', 'Admin\\ChangePasswordController::changePasswordByAdmin', ['filter' => 'admin']);
+$routes->group('hr', ['filter' => 'hr'], function ($routes) {
+
+    // Dashboard
+    $routes->get('dashboard', 'HR\DashboardController::index');
+
+    // Employees
+    $routes->get('employees', 'HR\EmployeeController::index');
+
+    // Change Password
+    $routes->get('changePassword', 'HR\ChangePasswordController::changePassword');
+    $routes->post('changePassword', 'HR\ChangePasswordController::changePasswordByAdmin');
+});
 
 // Log Out route
 
