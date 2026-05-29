@@ -14,7 +14,7 @@ class AdminFilter implements FilterInterface
             return redirect()->to('/login');
         }
 
-        if (session()->get('user_role') != 'super_admin') {
+        if (!in_array(session()->get('user_role'), ['super_admin', 'hr'])) {
             return redirect()->to('/dashboard')
                 ->with('error', 'Access Denied');
         }

@@ -3,12 +3,24 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
+// Default Route
+
 $routes->get('/', 'Home::index');
 
-$routes->get('/login', 'Auth\\LoginController::index');
+// Login Route for Admin and HR
 
+$routes->get('/login', 'Auth\\LoginController::index');
 $routes->post('/login/process', 'Auth\\LoginController::process');
 
-$routes->get('/logout', 'Auth\\LoginController::logout');
+// Admin and HR Dashboard
 
 $routes->get('/admin/dashboard', 'Admin\\DashboardController::index', ['filter' => 'admin']);
+
+// Get Hashed Password
+
+$routes->get('/admin/getHashedPassword', 'Auth\\LoginController::getHashedPassword', ['filter' => 'admin']);
+$routes->post('/admin/getHashedPassword', 'Auth\\LoginController::getHashedPasswordByAdmin', ['filter' => 'admin']);
+
+// Log Out route
+
+$routes->get('/logout', 'Auth\\LoginController::logout');

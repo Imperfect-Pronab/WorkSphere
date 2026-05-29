@@ -48,4 +48,17 @@ class LoginController extends BaseController
         session()->destroy();
         return redirect()->to('/login');
     }
+
+    public function getHashedPassword()
+    {
+        return view('admin/hashedpassword/hashedpassword');
+    }
+
+    public function getHashedPasswordByAdmin()
+    {
+        $password = $this->request->getPost('password');
+        $data = array();
+        $data['hashed_password'] = password_hash($password, PASSWORD_DEFAULT);
+        return view('admin/hashedpassword/hashedpassword', $data);
+    }
 }

@@ -7,29 +7,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background: #0f0d0a;
-            color: #f0ece4;
-        }
-
-        /* Pushes content to the right of the fixed sidebar */
-        .main-content {
-            margin-left: 220px;
-            /* sidebar width */
-            min-height: calc(100vh - 56px - 57px);
-            /* full height minus navbar + footer */
-            padding: 28px 32px;
-            font-family: 'Syne', sans-serif;
-        }
-    </style>
+    <link rel="stylesheet" href="<?= base_url('assets/admin/css/common.css'); ?>">
 
 </head>
 
