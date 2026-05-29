@@ -36,10 +36,10 @@ class LoginController extends BaseController
                     return redirect()->to('/employee');
                 }
             } else {
-                return redirect()->back()->with('error', 'Wrong password');
+                return redirect()->back()->with('error', 'Invalid credentials');
             }
         } else {
-            return redirect()->back()->with('error', 'Email not found');
+            return redirect()->back()->with('error', 'Invalid credentials');
         }
     }
 
