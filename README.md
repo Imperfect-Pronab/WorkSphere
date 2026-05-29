@@ -29,7 +29,7 @@ A structured, enterprise-style Employee Management System built with CodeIgniter
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/Imperfect-Pronab/worksphere-ci4.git
+git clone https://github.com/Imperfect-Pronab/WorkSphere.git
 cd worksphere-ci4
 composer install
 ```
