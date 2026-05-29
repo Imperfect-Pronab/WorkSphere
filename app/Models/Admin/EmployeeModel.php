@@ -17,4 +17,9 @@ class EmployeeModel extends Model
         'status'
     ];
     protected $useTimestamps = true;
+    protected $returnType = 'object';
+    public function getAllEmployee()
+    {
+        return $this->where('role', 'employee')->findAll();
+    }
 }
