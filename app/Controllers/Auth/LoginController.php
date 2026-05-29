@@ -29,7 +29,7 @@ class LoginController extends BaseController
                 ];
                 session()->set($sessionData);
                 if ($user['role'] == 'super_admin') {
-                    return redirect()->to('/admin');
+                    return redirect()->to('/admin/dashboard');
                 } elseif ($user['role'] == 'hr') {
                     return redirect()->to('/hr');
                 } else {

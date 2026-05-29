@@ -11,4 +11,4 @@ $routes->post('/login/process', 'Auth\\LoginController::process');
 
 $routes->get('/logout', 'Auth\\LoginController::logout');
 
-$routes->get('/admin', 'Admin\\DashboardController::index', ['filter' => 'admin']);
+$routes->get('/admin/dashboard', 'Admin\\DashboardController::index', ['filter' => 'admin']);
