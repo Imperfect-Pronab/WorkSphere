@@ -7,9 +7,8 @@ A structured, enterprise-style Employee Management System built with CodeIgniter
 ## 🚀 Features
 
 - Secure Authentication System
-- Role-Based Access Control (Admin / Employee)
+- Role-Based Access Control (Admin / HR)
 - Admin Dashboard for management overview
-- Employee profile management
 - Session handling with security focus
 - Password hashing for secure credentials
 - Modular and scalable project structure
