@@ -4,10 +4,10 @@
 <head>
 
     <title><?= $title ?? 'WorkSphere' ?></title>
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/assets/css/style.css') ?>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/admin/css/common.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('public/assets/admin/css/common.css'); ?>">
 
 </head>
 

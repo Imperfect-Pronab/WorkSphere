@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 
-<link rel="stylesheet" href="<?= base_url('assets/admin/css/list.css') ?>">
+<link rel="stylesheet" href="<?= base_url('public/assets/admin/css/list.css') ?>">
 
 <div class="dash-page">
 

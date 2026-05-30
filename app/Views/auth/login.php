@@ -7,7 +7,7 @@
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/admin/css/login.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('public/assets/admin/css/login.css') ?>">
 </head>
 
 <body class="grain min-h-screen flex items-center justify-center p-4 relative overflow-hidden"
