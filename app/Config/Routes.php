@@ -9,8 +9,8 @@ $routes->get('/', 'Home::index');
 
 // Login Route for Admin and HR
 
-$routes->get('/login', 'Auth\\LoginController::index');
-$routes->post('/login/process', 'Auth\\LoginController::process');
+$routes->get('/login', 'Auth\LoginController::index');
+$routes->post('/login/process', 'Auth\LoginController::process');
 
 // Admin
 
@@ -48,4 +48,4 @@ $routes->group('hr', ['filter' => 'hr'], function ($routes) {
 
 // Log Out route
 
-$routes->get('/logout', 'Auth\\LoginController::logout');
+$routes->get('/logout', 'Auth\LoginController::logout');
